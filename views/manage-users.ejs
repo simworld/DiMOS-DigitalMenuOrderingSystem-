@@ -1,0 +1,56 @@
+<!--include header-->
+<%- include ('include/_header')%> 
+<%- include ('include/_flash-messages') %>
+<!--/include header-->
+
+<!-- Main -->
+  <main id="site-main">
+      <div class="container">
+        <%- include ('include/_back')%>
+        <!-- <br> -->
+        <h1>Manage Users</h1>
+        <hr>
+          <table class="table table-hover mobile-table">
+            <thead>
+              <tr class="table-primary">
+                <th scope="col">ID</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <% users.forEach(user => { %>
+              <tr class="table">
+              
+                <td style="vertical-align: middle;"><a href="/admin/user/<%= user.id %>"><%= user.id %></a></td>
+                <td style="vertical-align: middle;"><a href="/admin/user/<%= user.id %>"><%= user.email %></a></td>
+                <td>
+
+                  <form action="/admin/update-role" method="POST" class="manage-user-form">
+                    <div class="form-group">
+                      <label for="selectRole" class="form-label mt-2">Select Role</label>
+                      <select class="form-select" name="role" id="selectRole">
+                        <option value="ADMIN" <%= user.role === 'ADMIN' ? 'selected' : '' %>>Admin</option>
+                        <option value="CLIENT" <%= user.role === 'CLIENT' ? 'selected' : '' %>>Client</option>
+                      </select>
+                      <input type="hidden" name="id" value="<%= user.id %>" />
+                      <button type="submit" class="btn btn-primary btn-sm float-end">Update</button>
+                    </div>
+                  </form>
+                  
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+          <%- include ('include/_pagination')%>
+
+      </div>
+
+  </main>
+<!-- </main> -->
+
+<!--include footer-->
+<%- include ('include/_footer')%>
+<!--/include foter-->

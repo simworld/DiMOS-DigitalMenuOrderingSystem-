@@ -1,0 +1,106 @@
+<!--include header-->
+<%- include ('include/_header')%>
+<!--/include header-->
+
+<main id="site-main">
+  <div class="container">
+    <%- include ('include/_back')%>
+    <h1>Dashboard</h1>
+    <hr>
+<!-- <section class="bg-light pt-2 pb-2 shadow-sm"> -->
+
+  <!-- Cards for stats -->
+  <div class="col">
+        <div class="card border-success mb-3" style="max-width: 20rem;">
+        <div class="card-header">Total Purchase Amount</div>
+        <div class="card-body" id="total">€</div>
+      </div>
+      <div class="card border-success mb-3" style="max-width: 20rem;"">
+        <div class="card-header">Users Registered</div>
+        <div class="card-body" id="total-users"></div>
+      </div>
+      <div class="card border-success mb-3" style="max-width: 20rem;"">
+        <div class="card-header">Orders Received</div>
+        <div class="card-body" id="total-orders"></div>
+      </div>
+      <div class="card border-success mb-3" style="max-width: 20rem;"">
+        <div class="card-header">Average Order Value</div>
+        <div class="card-body" id="avg-orders">€</div>
+      </div>
+  </div>
+    <!-- Line and Bar charts -->
+    
+  <canvas id="totalOrderDay" width="300" height="150"></canvas>
+  <hr>
+  <canvas id="totalOrderHour" width="300" height="150"></canvas>
+  <hr>
+  <canvas id="lastFiveOrder" width="300" height="150"></canvas>
+  <hr>
+
+  <!-- Pie Charts -->
+  <div class="row">
+    <div class="col-sm">
+      <canvas id="mostOrdered" width="300" height="150"></canvas>
+    </div>
+    <div class="col-sm">
+      <canvas id="orderStatus" width="300" height="150"></canvas>
+    </div>
+  </div>
+  <hr>
+  <canvas id="totalPurCust" width="300" height="150"></canvas>
+  <hr>
+  <canvas id="totOrdMonth" width="300" height="150"></canvas>
+
+
+    
+<!-- </section>   -->
+
+</div>
+
+</main>
+
+
+<!-- CHARTS -->
+<script>
+var data = JSON.parse(`<%- JSON.stringify(orders) %>`);
+var dataUser = JSON.parse(`<%- JSON.stringify(users) %>`);
+// var orders = JSON.parse(`<%- JSON.stringify(orders) %>`);;
+
+
+var colors = [];
+var labelsData2 = [];
+var tot2 = [];
+var colors = [];
+// var labelsData = [];
+var tot = [];
+// var totIdOrders = [];
+var totUsers = []
+// var creationDate = []
+var dynamicColors = function() {
+    var r = Math.floor(Math.random() * 255);
+    var g = Math.floor(Math.random() * 255);
+    var b = Math.floor(Math.random() * 255);
+    return "rgb(" + r + "," + g + "," + b + ")";
+};
+
+//CARDS
+statCards(dataUser,data);
+//PIE CHART - Orders Status || Most Ordered
+
+orderStatus(data);
+mostOrdered(data);
+
+//BAR CHART - Total Orders Per Months || Last Five Orders || Total Purchase Orders Per Customer || Cards
+totOrdMonth(data);
+totPurCust(data);
+lastFiveOrd(data);
+
+//LINE CHART - Total Orders Per Day || Total Orders Per Hour 
+totOrdDay(data);
+totOrdHour(data);
+</script>
+
+
+<!--include footer-->
+<%- include ('include/_footer')%>
+<!--/include foter-->

@@ -1,0 +1,100 @@
+<!--include footer-->
+<%- include ('include/_header')%>
+<!--/include foter-->
+
+<main id="site-main">
+    <div class="container">
+        <%- include ('include/_back')%>
+        <br>
+        <h2 id="order-status" data-id="<%= order._id%>">Order Status: <%= order.status%> </h2>
+        <div class="progress">
+            <% if (order.status == "Pending"){%>
+        
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width: 35%;"></div>
+            <% } else if (order.status == "Accepted"){ %>
+            
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
+        
+            <% } else if (order.status == "Completed"){ %>
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+            <% }%>
+        </div>
+        <br>
+        
+        <p>Order Created: <%= order.createdAt.toLocaleDateString()%> at <%= order.createdAt.toLocaleTimeString()%></p>
+        
+        <br>
+        <h3>Order Info</h3>
+        
+        <table class="table" >
+            <thead class="table-primary">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <%= order.order_id%>
+                </td>
+                <td>
+                    <%= order.user.email %>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table" >
+            <thead class="table-primary">
+                <tr class="text-center">
+                    <th>Items</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% order.cart.forEach(x => { %>
+                    <tr>
+                        <td class="text-center">
+                            <%= x.productId.title%>
+                        </td>
+                        <td class="text-center">
+                            <%= x.qty%>
+                        </td>
+                        <td class="text-center">
+                            €<%= x.productId.price%>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <p style="font-size: xx-large;">Total Order: €<%= order.total%></p>
+</main>
+
+<script>
+    const socket = io();
+    socket.on('connection')
+    socket.on('message', (data) => {
+    // console.log('Order status changed: ' + data);
+    const orId =  document.getElementById('order-status').getAttribute('data-id');
+
+    // console.log(orId)
+    if (orId == data.orderId){
+    document.getElementById('order-status').innerHTML = 'Order Status: ' + data.newStatus;
+    document.querySelector('.progress-bar').setAttribute('style', `width: ${data.progress}% !important;`);
+    // document.querySelector('.progress-bar').setAttribute('style', `width: ${data.progress}% !important; background-color: ${data.color} !important;`);
+    document.querySelector('.progress-bar').setAttribute('class', data.className);
+
+
+    }
+    });
+</script>
+
+<!--include footer-->
+<%- include('include/_footer') %>
+<!--/include foter-->
+
+
+
+

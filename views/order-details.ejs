@@ -1,0 +1,67 @@
+<!--include footer-->
+<%- include ('include/_header')%>
+<!--/include foter-->
+
+
+<main id="site-main">
+    <div class="container">
+        <%- include ('include/_back')%>
+        <br>
+        <h3>Order Status: <%= order.status%> </h3>
+        <br>
+        <h5>Order Created: <%= order.createdAt.toLocaleDateString()%> at <%= order.createdAt.toLocaleTimeString()%></h5>
+        <h5>Order Updated: <%= order.updatedAt.toLocaleDateString()%> at <%= order.updatedAt.toLocaleTimeString()%></h4>
+        
+        <br>
+        <h3>Order Info</h3>
+        <table class="table" >
+          <thead class="table-primary">
+            <tr>
+                  <th>Order ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <!-- <p> <%= order%></p> -->
+              <td>
+                <%= order.order_id%>
+            </td>
+              <td>
+                  <%= order.user.username %>
+              </td>
+              <td>
+                <%= order.user.email %>
+            </td>
+          </tr>
+        </tbody>
+        </table>
+
+        <table class="table" >
+          <thead class="table-primary">
+            <tr>
+                    <th>Items</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <% order.cart.forEach(x => { %>
+                      <tr>
+                          <td><%= x.productId.title%></td>
+                          <td><%= x.qty%></td>
+                          <td>€ <%= x.productId.price%></td>
+                      </tr>
+                    <% }) %>
+          </tbody>
+          </table>
+          <br>
+          <hr>
+          <h3 >Total Order: €<%= order.total%></h3>
+</main>
+
+<!--include footer-->
+<%- include('include/_footer') %>
+<!--/include foter-->

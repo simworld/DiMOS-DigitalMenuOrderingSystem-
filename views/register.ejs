@@ -1,0 +1,60 @@
+
+<!--include header-->
+<%- include ('include/_header')%> <%- include ('include/_flash-messages') %>
+<!--/include header-->
+
+    <!--Main-->
+    <main id="site-main">
+        <div class="container" id="login">
+            <!--form handling-->
+            <div class="row">
+                <h1 class="logo">
+                    <img src="/img/logo.png" width="150" height="150" alt="DiMOS Logo">DiMOS
+                </h1>
+                    <form action="/auth/register" method="POST" class="form-control">
+
+                        <fieldset>
+                            <legend>Please register a new account</legend>
+                            <div class="form-group">
+
+                                <div class="form-floating mb-3">
+                                    <input type="username" class="form-control" id="username" name="username" placeholder="username">
+                                    <label for="username">Username</label>
+        
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="email">
+                                    <label for="email">Email</label>
+    
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="password">
+                                    <label for="password">Password</label>
+    
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="password2" name="password2" placeholder="password2"/>
+                                    <label for="password2">Confirm password</label>
+    
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    
+                            </div>
+                        </fieldset>
+
+                       
+                    </form>
+
+                    <div>
+                        <p>
+                            Do you have an account? <span tabindex="0"><a href="/auth/login" aria-label="Login">Login</a></span>
+                        </p>
+                    </div>                  
+            </div>
+        </div>
+    </main>
+<!--/Main-->
+
+<!--include footer-->
+<%- include ('include/_footer')%>
+<!--/include foter-->

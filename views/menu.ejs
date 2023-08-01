@@ -1,0 +1,84 @@
+<!--include header-->
+<%- include ('include/_header')%>
+    <!--/include header-->
+
+    <!--Main-->
+    <main id="site-main">
+        <div class="container">
+            <%- include ('include/_back')%>
+            <h1>Menu Items</h1>
+            <hr>
+            <div class="row d-flex justify-content-center">
+                <% for(var i=0; i<items.length; i++) { %>
+                    <div class="card" style="width: 15rem;">
+                      <div class="card-body">
+                        <h5 class="card-title"><%= items[i].title %></h5>
+                        <p class="card-text">Price: €<%= items[i].price %></p>
+                        <!-- <p class="card-text"><%= items[i].description %></p> -->
+                      </div>
+                      <div class="card-footer">
+                        <div class="d-grid gap-2">
+                          <a class="btn btn-primary" href="/admin/items/<%= items[i]._id %>" role="button">View Details</a>
+                          <a class="btn btn-secondary" href="/admin/edit-item/<%= items[i]._id %>" role="button">Edit</a>
+                        </div>
+
+                            <form action="/admin/delete" method="POST">
+                                <input type="hidden" name="id" value="<%= items[i]._id %>">
+                                <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Are you sure you want to delete this item?')" aria-label="Delete <%= items[i].title %>"><i class="fa-solid fa-trash"></i></button>
+                            </form>
+                      </div>
+                    </div>
+                  
+                <% } %>
+              </div>
+              
+                <!-- <div class="row d-flex justify-content-center">
+                        <div class="col">
+                            <section class="bg-light pt-2 pb-2 shadow0-sm">
+                                <div class="container">
+                                    <div class="row">
+                                        <% for(var i=0; i<items.length; i++){%>
+                                            <div class="card" style="width: 18rem;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <%= items[i].title%>
+                                                    </h5>
+                                                    <p class="card-text"> Price: €<%= items[i].price%>
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <%= items[i].description%>
+                                                    </p>
+                                                    <div class="card-body">
+                                                        <a class="card-link" href="/admin/items/<%=items[i]._id%>"
+                                                            role="button">View Details</a>
+                                                        <a class="card-link" href="/admin/edit-item/<%=items[i]._id%>"
+                                                            role="button">Edit</a>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <form action="/admin/delete" method="POST">
+                                                            <input type="hidden" name="id" value="<%=items[i]._id%>">
+                                                            <button id="delButton" type="submit"
+                                                                class="btn btn-danger btn-lg"><i class="fa-solid fa-trash">
+                                                                    Delete</i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% }%>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                </div> -->
+                <%- include ('include/_pagination')%>
+
+
+        </div>
+
+    </main>
+    <!--/Main-->
+
+    <!--include footer-->
+    <%- include ('include/_footer')%>
+    <!--/include foter-->

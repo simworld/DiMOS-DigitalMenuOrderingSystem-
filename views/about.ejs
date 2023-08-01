@@ -1,0 +1,56 @@
+
+<!--include header-->
+<%- include ('include/_header')%>
+<!--/include header-->
+
+    <!--Main-->
+    <main id="site-main">
+        <div class="container">
+            <%- include ('include/_back')%>
+
+            <h1 class="logo">
+                <img src="/img/logo.png" width="150" height="150" alt="DiMOS Logo">DiMOS
+            </h1>
+            <p class="text-center">A digital menu ordering system created for small businesses</p>
+                
+            <p>Welcome to DiMOS, the all-in-one digital menu ordering system! The web application is designed to provide the user-friendly experience for customers to browse menus, and place orders for their meals directly from their smartphone, tablet, or computer. Meanwhile, the powerful backend system provides restaurant owners and staff with real-time updates, orders management, and detailed analytics to help them make informed decisions and optimize their operations.</p>
+
+
+            <div class="contact">
+                <form action="/user/contact" method="POST" class="form-control">
+                    <fieldset>
+                        <legend>Contact Us</legend>
+                        <div class="form-group">
+
+                            <div class="form-floating mb-3">
+                                <input type="name" class="form-control" id="name" name="name" placeholder="Enter name">
+                                <label for="name">Name</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                                <label for="email">Email address</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="textarea" class="form-label">Your Message:</label>
+
+                                <textarea class="form-control" id="textarea" rows="3"></textarea>
+
+                              </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+    </main>
+<!--/Main-->
+
+<!--include footer-->
+<%- include ('include/_footer')%>
+<!--/include foter-->

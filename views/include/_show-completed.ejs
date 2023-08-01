@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-12 mb-4">
+    <a href="/admin/download" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download all orders</a>
+  </div>
+  <table class="table table-hover mobile-table">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">Order ID</th>
+        <th scope="col">Email</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Total</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <% for(var i=0; i<orders.length; i++){%>
+
+        <tbody>
+          <tr class="table">
+            <th scope="row"><a href="/admin/orders/<%= orders[i]._id%>"><%= orders[i].order_id%></a></th>
+            <td><%= orders[i].user.email%></td>
+            <td><%= orders[i].createdAt.toLocaleDateString('en-GB')%></td>
+            <td><%= orders[i].status%></td>
+            <td>€ <%= orders[i].total%></td>
+            <td>
+                <button type="button" class="btn btn-danger btn-sm deleteOrder" data-id="<%= orders[i].id %>" aria-label="Delete order"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+    <% }%>
+  </table>
+</div>

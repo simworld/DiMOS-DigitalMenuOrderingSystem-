@@ -1,0 +1,51 @@
+
+<!--include header-->
+<%- include ('include/_header')%> <%- include ('include/_flash-messages') %>
+<!--/include header-->
+
+    <!--Main-->
+    <main id="site-main">
+        <div class="container" id="login">
+
+            <!--form handling-->
+            <div class="row">
+                <!-- <div class="col-sm-12"> -->
+                    <h1 class="logo">
+                        <img src="/img/logo.png" width="150" height="150" alt="DiMOS Logo">DiMOS
+                    </h1>
+                        <form action="/auth/login" method="POST" class="form-control">
+                            <fieldset>
+                                <legend>Please login to your account</legend>
+                                <div class="form-group">
+
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                                        <label for="email">Email address</label>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                        <label for="password">Password</label>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+
+                            </fieldset>
+                        </form>
+                    <div>
+                        <p>
+                            Don't have an account? <span tabindex="0"><a href="/auth/register" aria-label="Register for an account">Register</a></span>
+                        </p>
+                    </div>
+                <!-- </div> -->
+
+            </div>
+        </div>
+    </main>
+
+<!--/Main-->
+
+<!--include footer-->
+<%- include ('include/_footer')%>
+<!--/include foter-->

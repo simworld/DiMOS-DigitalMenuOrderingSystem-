@@ -1,0 +1,44 @@
+<!--include header-->
+<%- include ('include/_header')%>
+<!--/include header-->
+
+
+<!-- <h1><span class="goback" onclick="window.history.back()">←</span> Menu</h1> -->
+
+<main id="site-main">
+    <div class="container">
+        <%- include ('include/_back')%>
+      <div class="form-title text-center">
+        <h3>Edit Item</h3>
+      </div>
+      <form action="/admin/edit-product" method="POST">
+        <div class="edit_item">
+            <input type="hidden" name="id" value="<%= item._id%>">
+        <div class="mb-3">
+            <label for="title">Title</label>
+            <input class="form-control" id="title" name="title" value="<%= item.title%>">
+        </div>
+        <div class="mb-3">
+            <label for="price">Price</label>
+            <input class="form-control" id="price" name="price" value="<%= item.price%>">
+        </div>
+        <div class="mb-3">
+            <label for="description">Description</label>
+            <textarea class="form-control" name="description" id="description"><%= item.description%></textarea>
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+            
+        </div>
+        
+    </form>
+    
+    </div>
+</main>
+
+
+<!--include footer-->
+<%- include ('include/_footer')%>
+<!--/include foter-->

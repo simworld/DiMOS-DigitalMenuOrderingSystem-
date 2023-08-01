@@ -1,0 +1,106 @@
+<!--include header-->
+<%- include ('include/_header')%>
+<!--/include header-->
+
+
+<main id="site-main">
+  <div class="container">
+    <% include('include/_back') %>
+    <div class="row">
+      <div class="col-sm">
+        <h1>Menu</h1>
+        <hr>
+        <div class="accordion" id="menuAccordion">
+          <% for(var i=0; i<items.length; i++){%>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading<%= i %>">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= i %>" aria-expanded="false" aria-controls="collapse<%= i %>">
+                  <%= items[i].title %>
+                </button>
+              </h2>
+              <div id="collapse<%= i %>" class="accordion-collapse collapse" aria-labelledby="heading<%= i %>" data-bs-parent="#menuAccordion">
+                <div class="accordion-body">
+                  <form action="/user/add-to-cart" method="POST">
+                    <input type="hidden" name="id" value="<%= items[i]._id %>">
+                    <button class="btn btn-success add" type="submit">+</button>
+                  </form>
+                  <p><%= items[i].description %> <br> <span><strong>€ <%= items[i].price %></strong></span></p>
+                </div>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </div>
+      <div id="cartColumn" class="col-sm order-sm-2">
+        <h1>Order Cart Details</h1>
+        <div class="cart">
+          <button class="btn btn-primary btn-sm hide" type="button" data-bs-toggle="collapse" data-bs-target="#cart" aria-expanded="false" aria-controls="cart">
+            Hide Cart
+          </button>
+          <div class="collapse show" id="cart">
+            <div class="form-group">
+              <% if (cart === null || cart.items.length == 0) { %>
+                <p style="text-align: center;">Cart Empty!</p>
+              <% } else { %>
+                <table class="table">
+                  <thead>
+                    <tr class="table-primary text-center">
+                      <th scope="col">Title</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(let i = 0; i < cart.items.length; i++) {
+                        let eachItem = cart.items[i];  
+                      %>
+                      <tr>
+                        <td class="text-center">
+                          <%= eachItem.productId.title %>
+                        </td>
+                        <td class="text-center">
+                          € <%= eachItem.productId.price %>
+                        </td>
+                        <td class="text-center">
+                          <%= eachItem.qty %>
+                        </td>
+                        <td class="text-center">
+                          <form action="/user/remove-cart" method="POST">
+                            <input type="hidden" name="id" value="<%= eachItem.productId._id %>">
+                            <button type="submit" class="btn btn-danger" aria-label="Remove item from cart"><i class="fa-solid fa-trash"></i></button>
+                          </form>      
+                        </td>
+                      </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+                <!-- <div class="d-md-none">
+                  <h2>Total Items: <%= cart.items.length %></h2>
+                </div> -->
+                <h2>Total Price: € <%= cart.totalPrice %></h2>
+
+                <form action="/user/submit" method="POST">
+                  <input type="hidden" name="id" value="<%= cart._id %>">
+                  <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg" id="submit-order">Submit</button>
+                  </div>
+                </form>
+                <form action="/user/clear" method="POST">
+                  <input type="hidden" name="id" value="<%= cart._id %>">
+                  <button type="submit" class="btn btn-danger btn-lg">Clear</button>
+                </form>
+              <% } %>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+  
+
+<!--include footer-->
+<%- include ('include/_footer')%>
+<!--/include foter-->
+

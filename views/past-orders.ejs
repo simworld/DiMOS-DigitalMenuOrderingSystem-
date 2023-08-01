@@ -1,0 +1,24 @@
+
+<!--include header-->
+<%- include ('include/_header')%>
+<!--/include header-->
+
+    <!--Main-->
+    <main id="site-main">
+        <div class="container">
+            <%- include ('include/_back')%>
+            <h1>Past Orders</h1>
+            <hr>
+            <div class="row">
+                <div class="col">
+                <%- include ('include/_show-completed')%>
+                </div>
+                <%- include ('include/_pagination')%>
+            </div>
+        </div>
+    </main>
+<!--/Main-->
+
+<!--include footer-->
+<%- include ('include/_footer')%>
+<!--/include foter-->

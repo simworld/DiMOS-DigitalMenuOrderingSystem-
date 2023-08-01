@@ -1,0 +1,43 @@
+
+<!--include header-->
+    <%- include ('include/_header')%>
+<!--/include header-->
+
+<!--Main-->
+<main id="site-main">
+    <div class="container">
+
+        <h1 class="logo">
+            <img src="/img/logo.png" width="150" height="150" alt="DiMOS Logo">DiMOS
+        </h1>
+        
+        <% if (user && user.role === 'ADMIN') { %>
+            <p class="text-center">Welcome, <%= user.username%>!</p>
+        <% } else if (user && user.role === 'CLIENT') { %>
+            <p class="text-center">Welcome, <%= user.username%>!</p>
+        <% } else { %>
+            <p class="text-center">A digital menu ordering system created for small businesses</p>
+        <% } %>
+
+        <div class="buttons">
+    
+        <!-- check if user is authenticated -->
+        <% if (!user) { %>
+        <a href="/auth/register"><button type="submit" class="btn btn-light btn-lg">Register</button></a>
+        <a href="/auth/login"><button type="submit" class="btn btn-primary btn-lg">Login</button></a>
+        <% } else if (user.role === "ADMIN") { %>
+            <a href="/admin/orders"><button type="submit" class="btn btn-primary btn-lg">View Orders</button></a>
+        <% } else if (user.role === "CLIENT") { %>
+            <a href="/user/cart"><button type="submit" class="btn btn-primary btn-lg">Make An Order</button></a>
+        <% } %>
+        </div>
+    </div>
+</main>
+
+
+
+<!--/Main-->
+
+<!--include footer-->
+<%- include ('include/_footer')%>
+<!--/include foter-->

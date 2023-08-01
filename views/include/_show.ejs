@@ -1,0 +1,67 @@
+
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <% if (orders === null || orders.length == 0) { %>
+        <br>
+        <h2>No previous orders!</h2>
+        <% } %>
+        <% for(var i=0; i<orders.length; i++) { %>
+        <div class="card border-success mb-3" style="width: 15rem;">
+        <div class="card-header"> Status: <%= orders[i].status %> </div>
+        <% if (orders[i].status === "Pending") { %>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="33"></div>
+              </div>
+            <% } else { %>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="66"></div>
+            </div>            
+            <% } %>
+        <div class="card-body">
+            <p class="card-text"> Email: <%= orders[i].user.email %></p>
+            <% for(var j=0; j<orders[i].cart.length; j++) { %>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" id="product" style="padding:0; margin-bottom: .4em;"><%= orders[i].cart[j].productId.title %> x <%= orders[i].cart[j].qty %></li>
+            </ul>
+            <% } %>
+        </div>
+        <a href="/admin/orders/<%= orders[i]._id %>" class="card-link">Order Details</a>
+        <div class="card-footer">
+            <% if (orders[i].status === "Pending") { %>
+            <button type="button" class="btn btn-success btn-lg acceptOrder" data-id="<%= orders[i].id %>" data-status="<%= orders[i].status %>"><i class="fa-solid fa-check"></i> Accept</button>
+            <% } else { %>
+            <button type="button" class="btn btn-success btn-lg acceptOrder" data-id="<%= orders[i].id %>" data-status="<%= orders[i].status %>"><i class="fa-solid fa-check"></i> Complete</button>
+            <% } %>
+            <button type="button" class="btn btn-danger btn-lg deleteOrder" data-id="<%= orders[i].id %>"><i class="fa-solid fa-trash"></i> Delete</button>
+        </div>
+        </div>
+        <% } %>
+    </div>
+</div>
+      
+
+
+<script>
+setTimeout(function(){
+    location.reload();
+  }, 30000); 
+
+
+const socket = io();
+
+socket.on('connection')
+
+socket.on('message', (data)=> {
+    console.log(data)
+
+    location.reload()
+
+})
+
+socket.on('order', data => {
+      console.log(data);
+});
+
+</script>
+
+

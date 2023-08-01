@@ -1,0 +1,42 @@
+
+<!--include header-->
+<%- include ('include/_header')%>
+<!--/include header-->
+
+<main id="site-main">
+  <div class="container">
+    <%- include ('include/_back')%>
+
+    <h1 class="table">User Information</h1>
+    <hr>
+    <table class="table">
+      <thead class="table-primary">
+          <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Role</th>  
+          </tr>
+      </thead>
+      <tbody>
+      <tr>
+          <td>
+              <%= person.username %>
+          </td>
+          <td>
+              <%= person.email %>
+          </td>
+          <td>
+            <%= person.role %>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+
+</main>
+
+<!--/Main-->
+
+<!--include footer-->
+<%- include ('include/_footer')%>
+<!--/include foter-->
+

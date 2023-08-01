@@ -1,0 +1,59 @@
+<!--include footer-->
+<%- include ('include/_header')%>
+<!--/include foter-->
+
+<main id="site-main">
+    <div class="container">
+        <%- include ('include/_back')%>
+      
+        <h1>Orders History</h1>
+        <hr>
+        <!-- <br> -->
+
+        <% if (orders === null || orders.length == 0) {%>
+            <br>
+            <h2>No previous orders!</h2>
+        <% }%>
+    
+        <% for(var i=0; i<orders.length; i++){%>
+        
+            <div class="row">
+              <div class="table-responsive mobile-table">
+                <table class="table table-hover">
+                  <thead class="table-primary">
+                    <tr>
+                          <th scope="col">Order ID</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Total</th>
+                        </tr>
+                      </thead>        
+                      
+                      <% for(var i=0; i<orders.length; i++){%>
+                        <tbody>
+                            <tr class="table">
+                              <th scope="row"><a href="/user/order-status/<%= orders[i]._id%>"><%= orders[i].order_id%></th></a>
+                              <td><%= orders[i].user.email%></td>
+                              <td><%= orders[i].createdAt.toLocaleDateString('en-GB')%></td>
+                              <td><%= orders[i].status%></td>
+                              <td>€ <%= orders[i].total%></td>
+                            </tr>
+                          </tbody>
+                          <% }%>
+                </table>
+              </div>
+
+            </div>
+            <%- include ('include/_pagination')%>
+
+        <% }%>
+
+    
+
+</main>
+
+
+<!--include footer-->
+<%- include ('include/_footer')%>
+<!--/include foter-->
