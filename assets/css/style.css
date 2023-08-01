@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@800&family=Sora&display=swap');
+
+
+:root{
+  --dark: #006d1b;
+  --light:#464749;
+  --light-green: #06d6a0;
+  --my-green:#049c2a;
+  --border:#dee2e6;
+  --border-btn:#edf2f4;
+}
+
+.logo{
+    margin-top: 2em;
+    color: var(--dark);
+    text-align: center;
+    font-weight: bolder;
+    font-family: 'Encode Sans', sans-serif;
+
+}
+
+#site-main{
+    /* margin-top: 6em; */
+    margin-top: 1em;
+    /* font-family: 'Sora', sans-serif; */
+    /* background-color: #06d6a0; */
+} */
+
+
+
+/* #site-main .container .box-nav > a {
+    font-size: 1em;
+    padding: .5em 1em;
+} */
+
+/* #site-main .container form {
+  margin: 2em 10px 10px;
+} */
+#site-main .container {
+  margin: 2em 10px 10px;
+}
+.container{
+    max-width: 1024px;
+    margin-top: 2em;
+
+}
+
+    /* margin: auto; */
+    /* font-family: 'Sora', sans-serif; */
+
+/* Buttons */
+.buttons{
+    margin-top: 2em;
+    text-align: center;
+}
+
+#pagination{
+  margin-top: 2em;
+}
+
+.btn {
+    display: block;
+    margin-top: .2em;
+}
+
+.btn.btn-success.add {
+    float: right;
+}
+
+.btn.btn-success.remove {
+    float: right;
+}
+
+/* Flash alert messages */
+.alert-messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  ul.messages {
+    list-style: none;
+    min-width: 500px;
+    max-width: 500px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 16px;
+  }
+
+  @media all and (max-width:30em){
+    ul.messages{
+    list-style: none;
+    min-width: 200px;
+    max-width: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 16px;
+    }
+  }
+  ul.messages * {
+    padding: 8px 12px;
+  }
+  
+  .messages .error {
+    background-color: #f87171;
+  }
+  .messages .success {
+    background-color: #6ee7b7;
+  }
+  .messages .warning {
+    background-color: #fcd34d;
+  }
+  .messages .info {
+    background-color: #93c5fd;
+  }
+
+  #alert {
+    padding-left: 0;
+ }
+
+
+ /* Register and Login form width */
+ #login, #register {
+    max-width: 400px;
+ }
+
+ /* Cards */
+
+.card{
+    display: flex;
+    /* width: 15%; */
+    float: left;
+    flex-direction: column;
+    /* margin-left: 0.75em;
+    margin-bottom: 0.75em; */
+    margin: 0.75rem 0.75rem 0.75rem 0.75rem;
+    /* margin-bottom: 10em; */
+    padding: 0.75rem 1.125rem;
+    /* padding: 0.625em 0.1875em;   */
+    /* height: auto; */
+}
+
+
+/* .cart{
+  margin-left: 30px;
+} */
+
+span{
+  font-size: x-large;
+}
+
+h1{
+  text-align: center;
+}
+
+#cartColumn {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  background-color:rgb(252, 252, 252);
+  /* background-color: rgb(247, 211, 207); */
+  /* background-color: white; */
+  border-radius: 10px;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+#menuAccordion .accordion-button:focus {
+  z-index: 1;
+}
+/* body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+} */
+
+td, th {
+  vertical-align: middle;
+}
+
+
+/* for a web accessibility font size increased and bold applied
+ for the link in the cards */
+.card-link{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.btn.btn-primary.btn-sm.hide{
+  margin-bottom: 1em;
+}
+
+/* @media only screen and (max-width: 1024px){
+  table, thead, tbody, th, td, tr {
+      display: block;
+  }
+  thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -99999px;
+  }
+  tr{
+      border: 1px solid var(--border);
+  }
+  td{
+      border: none;
+      border-bottom: 1px solid var(--border);
+      position: relative
+  }
+} */
+
+@media only screen and (max-width: 1024px){
+  .mobile-table table, .mobile-table thead, .mobile-table tbody, .mobile-table th, .mobile-table td, .mobile-table tr {
+      display: block;
+  }
+  .mobile-table thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -99999px;
+  }
+  .mobile-table tr{
+      border: 1px solid var(--border);
+  }
+  .mobile-table td{
+      border: none;
+      border-bottom: 1px solid var(--border);
+      position: relative
+  }
+}
+
+
